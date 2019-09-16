@@ -996,11 +996,7 @@ void processSerialCommand()
             SERIAL_DEVICE.print("Fire Camera");
             SERIAL_DEVICE.print(userCmd.args[0]);
             SERIAL_DEVICE.print("\r\n");
-            enable_PT();
-            enable_AUX();
             fire_camera((long)userCmd.args[0]*100);
-            disable_PT();
-            disable_AUX();
           }
           break;
           
