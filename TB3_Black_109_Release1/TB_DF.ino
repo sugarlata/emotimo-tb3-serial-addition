@@ -725,6 +725,16 @@ byte processUserMessage(char data)
       userCmd.command = CMD_IM;
       msgState = MSG_STATE_DATA;
     }
+    else if (lastUserData == 'f' && data == 'i') // fire camera [shutter speed]
+    {
+      userCmd.command = CMD_FI;
+      msgState = MSG_STATE_DATA;
+    }
+    else if (lastUserData == 'm' && data == 'o') // Move to sync three way
+    {
+      userCmd.command = CMD_MO;
+      msgState = MSG_STATE_DATA;
+    }
     else
     {
       // error msg? unknown command?
@@ -809,6 +819,8 @@ void processSerialCommand()
   {
     int cmd = processUserMessage(SERIAL_DEVICE.read());
     
+    SERIAL_DEVICE.print(cmd);
+
     if (cmd != CMD_NONE)
     {
       boolean parseError = false;
@@ -976,7 +988,31 @@ void processSerialCommand()
             sendMessage(MSG_IM, motor);
           }
           break;
+
+        case CMD_FI:
+          parseError = (userCmd.argCount != 1);
+          if (!parseError)
+          {
+            SERIAL_DEVICE.print("Fire Camera");
+            SERIAL_DEVICE.print(userCmd.args[0]);
+            SERIAL_DEVICE.print("\r\n");
+            fire_camera((long)userCmd.args[0]*100);
+          }
+          break;
           
+        case CMD_MO:
+          parseError = (userCmd.argCount != 3);
+          if (!parseError)
+          {
+            SERIAL_DEVICE.print("Moving Camera");
+            SERIAL_DEVICE.print(userCmd.args[0]);
+            SERIAL_DEVICE.print(userCmd.args[1]);
+            SERIAL_DEVICE.print(userCmd.args[2]);
+            SERIAL_DEVICE.print("\r\n");
+            synched3PtMove_max((float)userCmd.args[0], (float)userCmd.args[1], (float)userCmd.args[2]);
+          }
+          break;
+
         default:
           parseError = true;
           break;

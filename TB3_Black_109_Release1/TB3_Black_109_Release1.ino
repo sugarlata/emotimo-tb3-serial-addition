@@ -193,11 +193,11 @@ setup_81,setup_82,setup_83,setup_84,setup_85,setup_86,setup_87,setup_88,setup_89
 
 
 //Global Parameters 
-#define DEBUG 1//
-#define DEBUG_MOTOR 1//
+#define DEBUG 0//
+#define DEBUG_MOTOR 0//
 #define DEBUG_NC 0 //
 #define DEBUG_PANO 0
-#define DEBUG_GOTO 1
+#define DEBUG_GOTO 0
 #define POWERDOWN_LV false //set this to cause the TB3 to power down below 10 volts
 #define MAX_MOVE_POINTS 3
 #define VIDEO_FEEDRATE_NUMERATOR 375L // Set this for 42000L, or 375L for faster calc moves
@@ -554,6 +554,8 @@ char *txBufPtr;
 #define CMD_SA         50 // stop all (hard)
 #define CMD_BF         60 // blur frame
 #define CMD_GO         61 // go!
+#define CMD_FI         62 // fire camera
+#define CMD_MO         65 // Sync three way move max
 
 #define CMD_JM         70 // jog motor
 #define CMD_IM         71 // inch motor
