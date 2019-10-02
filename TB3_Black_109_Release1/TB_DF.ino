@@ -818,8 +818,6 @@ void processSerialCommand()
   for (int i = 0; i < avail; i++)
   {
     int cmd = processUserMessage(SERIAL_DEVICE.read());
-    
-    SERIAL_DEVICE.print(cmd);
 
     if (cmd != CMD_NONE)
     {
@@ -860,7 +858,6 @@ void processSerialCommand()
             sendMessage(MSG_MP, motor);
           }
           break;
-
 
         case CMD_MP:
           parseError = (userCmd.argCount != 1 || !isValidMotor(motor));
