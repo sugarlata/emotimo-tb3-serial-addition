@@ -211,13 +211,13 @@ setup_81,setup_82,setup_83,setup_84,setup_85,setup_86,setup_87,setup_88,setup_89
 #define MENU_OPTIONS  8
 
 
-#define REG2POINTMOVE 0
-#define REV2POINTMOVE 1
-#define REG3POINTMOVE 2
-#define REV3POINTMOVE 3
-#define PANOGIGA      4
-#define PORTRAITPANO  5
-#define DFSLAVE       6
+#define REG2POINTMOVE 1
+#define REV2POINTMOVE 2
+#define REG3POINTMOVE 3
+#define REV3POINTMOVE 4
+#define PANOGIGA      5
+#define PORTRAITPANO  6
+#define DFSLAVE       0
 #define SETUPMENU     7
 #define AUXDISTANCE   99
 
@@ -361,7 +361,7 @@ byte AUX_REV;  //1=Aux Enabled, 2=Aux disabled
 //control variable, no need to store in EEPROM - default and setup during shot
 unsigned int progstep = 0; //used to define case for main loop
 boolean progstep_forward_dir=true; //boolean to define direction of menu travel to allow for easy skipping of menus
-unsigned int progtype=6; //updownmenu selection
+unsigned int progtype=0; //updownmenu selection
 int inprogtype=0; //updownmenu selection during shoot
 boolean reset_prog=1; //used to handle program reset or used stored
 unsigned int first_time=1; //variable to help with LCD dispay variable that need to show one time
